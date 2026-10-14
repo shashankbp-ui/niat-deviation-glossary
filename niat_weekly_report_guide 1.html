@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NIAT Weekly Instructor Report — Metric Definitions</title>
+<style>
+  :root{
+    --ink:#1B2430; --mut:#657079; --line:#E3E7E6; --soft:#F5F7F6;
+    --brand:#2F6B63; --brandsoft:#E7F1EF;
+    --good:#2F7D4E; --goodsoft:#E8F3EC;
+    --amb:#9A6B12; --ambsoft:#FBF1DC;
+    --red:#B23A2C; --redsoft:#FBE9E5;
+    --paper:#FFFFFF; --bg:#F0F2F1; --radius:14px;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+       line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:16px}
+
+  header.top{background:linear-gradient(135deg,#2F6B63,#245852);color:#fff;
+    border-radius:var(--radius);padding:24px;margin:14px 0 18px}
+  header.top .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.82;margin:0 0 7px;font-weight:700}
+  header.top h1{margin:0 0 7px;font-size:23px;line-height:1.25;font-weight:800}
+  header.top p{margin:0;opacity:.95;font-size:14.5px;max-width:600px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:13px 0 0}
+  .chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+    color:#fff;font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px}
+
+  section{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:0 0 16px}
+  section > h2{margin:0 0 4px;font-size:18px;font-weight:800}
+  section > .sub{margin:0 0 14px;color:var(--mut);font-size:13.5px}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  thead th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--mut);font-weight:800;padding:0 10px 8px;border-bottom:2px solid var(--line)}
+  tbody td{vertical-align:top;padding:11px 10px;border-bottom:1px solid var(--line)}
+  tbody tr:last-child td{border-bottom:none}
+  td.m{font-weight:700;width:27%;color:var(--ink)}
+  td.d{width:40%;color:var(--ink)}
+  td.c{width:33%;color:var(--mut)}
+  td.c b,td.d b{color:var(--ink)}
+  .thr{display:inline-block;font-size:11.5px;font-weight:800;color:var(--red);
+    background:var(--redsoft);border:1px solid #EDC9C2;border-radius:999px;padding:1px 8px;margin-top:4px}
+
+  /* bands */
+  .bands{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:4px 0 0}
+  .band{border-radius:10px;padding:10px;text-align:center;border:1px solid var(--line)}
+  .band .nm{font-weight:800;font-size:13.5px;margin:0 0 2px}
+  .band .rg{font-size:12px;color:var(--mut);font-weight:600}
+  .band.good{background:var(--goodsoft);border-color:#CDE6D4}.band.good .nm{color:var(--good)}
+  .band.med{background:var(--ambsoft);border-color:#ECD9AE}.band.med .nm{color:var(--amb)}
+  .band.low{background:var(--redsoft);border-color:#EDC9C2}.band.low .nm{color:var(--red)}
+  .band.none{background:var(--soft)}.band.none .nm{color:var(--mut)}
+
+  code{font-family:var(--mono);font-size:12px;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+  .note{background:var(--brandsoft);border:1px solid #CFE3DF;border-left:4px solid var(--brand);
+    border-radius:8px;padding:11px 14px;font-size:13.5px;margin:12px 0 0}
+  .note b{color:var(--brand)}
+  footer{color:var(--mut);font-size:12.5px;text-align:center;padding:8px 0 26px}
+
+  /* responsive: stack rows into labelled cards */
+  @media (max-width:620px){
+    header.top h1{font-size:20px}
+    .bands{grid-template-columns:repeat(2,1fr)}
+    thead{display:none}
+    tbody td{display:block;width:auto;border-bottom:none;padding:2px 0}
+    tbody tr{display:block;border:1px solid var(--line);border-radius:10px;padding:12px;margin:0 0 10px}
+    td.m{font-size:14.5px;margin-bottom:4px}
+    td.d::before{content:"Definition";display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:800;margin-bottom:1px}
+    td.c::before{content:"Considerations";display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:800;margin:7px 0 1px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <p class="kicker">NIAT Instructor Ops · TeachOS</p>
+    <h1>Weekly Instructor Report — Metric Definitions</h1>
+    <p>Every metric in your weekly email, in plain words — what it means and what it counts.</p>
+    <div class="meta">
+      <span class="chip">📅 Last week · Mon–Sun</span>
+      <span class="chip">👤 Your instructors only</span>
+      <span class="chip">🏫 NIAT Offline campuses</span>
+    </div>
+  </header>
+
+  <!-- SCORECARD -->
+  <section>
+    <h2>Scorecard</h2>
+    <p class="sub">The overall teaching score, out of 77 (shown as a %).</p>
+    <table>
+      <thead><tr><th>Metric</th><th>Definition</th><th>Considerations</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="m">Teaching Score <span style="color:var(--mut);font-weight:600">/ 35</span></td>
+          <td class="d">How well lectures were taught — combines QA rating, teaching quality, quiz scores and student feedback.</td>
+          <td class="c">Lecture sessions in the week. Blank if any part has no data.</td>
+        </tr>
+        <tr>
+          <td class="m">Tutorial Score <span style="color:var(--mut);font-weight:600">/ 35</span></td>
+          <td class="d">How well practice sessions went — combines feedback, benchmark sessions and assessment clearance.</td>
+          <td class="c">Practice sessions in the week. Blank if any part has no data.</td>
+        </tr>
+        <tr>
+          <td class="m">Preparedness Score <span style="color:var(--mut);font-weight:600">/ 7</span></td>
+          <td class="d">How ready the class was — the pre-class readiness signal.</td>
+          <td class="c">Based on pre-class setup and checklist.</td>
+        </tr>
+        <tr>
+          <td class="m">Overall Score <span style="color:var(--mut);font-weight:600">/ 77</span></td>
+          <td class="d">Teaching + Tutorial + Preparedness, shown as a percentage.</td>
+          <td class="c">Needs all three areas to have data. Culture is planned but not live, so the total is 77 today.</td>
+        </tr>
+        <tr>
+          <td class="m">Performance Band</td>
+          <td class="d">The overall % placed into a simple band (see below).</td>
+          <td class="c">"No score" means one area had no data that week — not a bad score.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="bands" style="margin-top:12px">
+      <div class="band good"><p class="nm">Good</p><p class="rg">80% &amp; above</p></div>
+      <div class="band med"><p class="nm">Medium</p><p class="rg">60% – 79%</p></div>
+      <div class="band low"><p class="nm">Low</p><p class="rg">Below 60%</p></div>
+      <div class="band none"><p class="nm">No score</p><p class="rg">Not enough data</p></div>
+    </div>
+  </section>
+
+  <!-- SUPPORTING METRICS -->
+  <section>
+    <h2>Supporting numbers</h2>
+    <p class="sub">Shown next to each instructor to explain the score.</p>
+    <table>
+      <thead><tr><th>Metric</th><th>Definition</th><th>Considerations</th></tr></thead>
+      <tbody>
+        <tr><td class="m">Average QA Score</td><td class="d">Average class-quality score, out of 10.</td><td class="c">Lecture &amp; Practice sessions.</td></tr>
+        <tr><td class="m">QA Reports Missing</td><td class="d">Number of sessions with no QA rating.</td><td class="c">Lecture &amp; Practice sessions.</td></tr>
+        <tr><td class="m">Average Student Feedback</td><td class="d">Average student rating (teaching quality for Lecture, guidance clarity for Practice).</td><td class="c">Lecture &amp; Practice sessions.</td></tr>
+        <tr><td class="m">Average Grooming</td><td class="d">Average grooming score for the week.</td><td class="c">Lecture &amp; Practice sessions.</td></tr>
+        <tr><td class="m">Attendance %</td><td class="d">Present days ÷ working days.</td><td class="c">Excludes holidays, earned leave and unmarked days.</td></tr>
+        <tr><td class="m">Punctuality %</td><td class="d">On-time check-ins ÷ total check-ins.</td><td class="c">Based on the instructor's daily check-in.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- DEVIATIONS -->
+  <section>
+    <h2>Deviations (the 12 flags)</h2>
+    <p class="sub">A name appears only if it crossed the line — shown as <code>Name - value</code>.</p>
+    <table>
+      <thead><tr><th>Metric</th><th>Definition</th><th>Considerations</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="m">Company Mic Usage Below 90%<br><span class="thr">&lt; 90%</span></td>
+          <td class="d">How often the company mic was used across sessions.</td>
+          <td class="c">Lecture &amp; Practice sessions that have already ended.</td>
+        </tr>
+        <tr>
+          <td class="m">QA Report Open Rate Below 80%<br><span class="thr">&lt; 80%</span></td>
+          <td class="d">How many of the instructor's QA reports were opened.</td>
+          <td class="c">Lecture &amp; Practice sessions that have a QA report generated.</td>
+        </tr>
+        <tr>
+          <td class="m">Average QA Score Below 6.5<br><span class="thr">&lt; 6.5 / 10</span></td>
+          <td class="d">The instructor's average class-quality score.</td>
+          <td class="c">Lecture &amp; Practice sessions.</td>
+        </tr>
+        <tr>
+          <td class="m">Pre-Lecture Readiness Below 70%<br><span class="thr">&lt; 70%</span></td>
+          <td class="d">Average completion of the pre-class checklist.</td>
+          <td class="c">Lecture (8 items) &amp; Practice (7 items).</td>
+        </tr>
+        <tr>
+          <td class="m">Session Completion Rate Below 90%<br><span class="thr">&lt; 90%</span></td>
+          <td class="d">How many scheduled sessions were marked completed.</td>
+          <td class="c">Lecture, Practice &amp; Exam sessions.</td>
+        </tr>
+        <tr>
+          <td class="m">Portal Recording Adoption Below 60%<br><span class="thr">&lt; 60%</span></td>
+          <td class="d">How many sessions were recorded through the TeachOS portal.</td>
+          <td class="c">Lecture &amp; Practice sessions that have already started.</td>
+        </tr>
+        <tr>
+          <td class="m">Session Not Started Within 10 Minutes<br><span class="thr">&gt; 0 sessions</span></td>
+          <td class="d">Sessions that started more than 10 min after the scheduled time.</td>
+          <td class="c">All session types with a recording start time.</td>
+        </tr>
+        <tr>
+          <td class="m">Instructor Late in More Than 3 Sessions<br><span class="thr">&gt; 3 sessions</span></td>
+          <td class="d">Sessions that started more than 15 min late.</td>
+          <td class="c">Lecture &amp; Practice sessions.</td>
+        </tr>
+        <tr>
+          <td class="m">Instructor No-Show<br><span class="thr">&gt; 0 sessions</span></td>
+          <td class="d">Sessions never started — no recording, no evaluation, still pending.</td>
+          <td class="c">Lecture, Practice &amp; Exam sessions.</td>
+        </tr>
+        <tr>
+          <td class="m">Completed Session With No QA Report<br><span class="thr">&gt; 0 sessions</span></td>
+          <td class="d">Completed sessions with no QA report attached.</td>
+          <td class="c">Completed Lecture, Practice &amp; Exam sessions.</td>
+        </tr>
+        <tr>
+          <td class="m">Session Not Marked Completed<br><span class="thr">&gt; 0 sessions</span></td>
+          <td class="d">Sessions past end time still pending, started, or not marked.</td>
+          <td class="c">Lecture, Practice &amp; Exam sessions.</td>
+        </tr>
+        <tr>
+          <td class="m">Zero Attendance Marked<br><span class="thr">&gt; 0 sessions</span></td>
+          <td class="d">Sessions where no student was marked present.</td>
+          <td class="c">Scheduled session slots with student attendance data.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">For percentage flags the value is a rate (<code>Name - 72%</code>); for the rest it's a count (<code>Name - 3 sessions</code>). Names are listed worst-first. No names under a flag means nobody breached it.</div>
+  </section>
+
+  <footer>NIAT Instructor Ops · Automated weekly report · Figures in your email are specific to your own instructors.</footer>
+
+</div>
+</body>
+</html>
